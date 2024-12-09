@@ -115,12 +115,25 @@
                     } else{
                         echo "ERROR: Could not able to execute $sql. <br>" . mysqli_error($link);
                     }
-					echo "<br> <h2>Lease Details</h2> <br>";
-					
-                    // Select Department Stats
-					// You will need to Create a DEPT_STATS table
-					
-                    $sql2 = "SELECT * FROM Lease";
+
+                    echo "<br> <h2>Lease Details</h2> <br>";
+                    $sql2 = "
+                    SELECT 
+                        L.LeaseId,
+                        L.hid,
+                        L.Lease_Start,
+                        L.Lease_End,
+                        L.Monthly_Rent,
+                        TIMESTAMPDIFF(MONTH, L.Lease_Start, L.Lease_End) + 1 AS LeaseDuration,
+                        SUM(L.Monthly_Rent) - IFNULL(SUM(P.Amount), 0) AS AllRentLeft
+                    FROM 
+                        Lease L
+                    LEFT JOIN 
+                        Payments P ON L.LeaseId = P.lid
+                    GROUP BY 
+                        L.LeaseId
+                    ";
+
                     if($result2 = mysqli_query($link, $sql2)){
                         if(mysqli_num_rows($result2) > 0){
                             echo "<div class='col-lg-7'>";
@@ -132,7 +145,8 @@
                                         echo "<th width = 20%>Start Date</th>";
                                         echo "<th width = 20%>End Date</th>";
                                         echo "<th width = 15%>Monthly Rent</th>";
-	
+                                        echo "<th width=15%>Lease Duration (Months)</th>";
+                                        echo "<th width=15%>Rent Owed</th>";
                                 echo "</thead>";
                                 echo "<tbody>";
                                 while($row = mysqli_fetch_array($result2)){
@@ -142,7 +156,8 @@
                                         echo "<td>" . $row['Lease_Start'] . "</td>";
                                         echo "<td>" . $row['Lease_End'] . "</td>";
                                         echo "<td>" . $row['Monthly_Rent'] . "</td>";
-               
+                                        echo "<td>" . $row['LeaseDuration'] . "</td>";
+                                        echo "<td>" . $row['AllRentLeft'] . "</td>";
                                     echo "</tr>";
                                 }
                                 echo "</tbody>";                            
@@ -156,9 +171,6 @@
                         echo "ERROR: Could not able to execute $sql2. <br>" . mysqli_error($link);
                     }
 					
-                    // Select Department Stats
-					// You will need to Create a DEPT_STATS table
-                    // Close connection
                     mysqli_close($link);
                     ?>
                 </div>
