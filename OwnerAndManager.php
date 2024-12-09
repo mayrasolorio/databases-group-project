@@ -51,20 +51,11 @@
 					<li> DELETE property manager, owner, and renter records </li>
 				</ol>
 		       <h2 class="pull-left">Owner Details</h2>
-            
-               <a href="createEmployee.php" class="btn btn-success pull-right">Add New Employee</a>
                     </div>
                     <?php
                     // Include config file
                     require_once "config.php";
                     
-                    // Attempt select all employee query execution
-					// *****
-					// Insert your function for Salary Level
-					/*
-						$sql = "SELECT Ssn,Fname,Lname,Salary, Address, Bdate, PayLevel(Ssn) as Level, Super_ssn, Dno
-							FROM EMPLOYEE";
-					*/
                     $sql = "SELECT * FROM Owner";
                     if($result = mysqli_query($link, $sql)){
                         if(mysqli_num_rows($result) > 0){
@@ -151,3 +142,14 @@
                     } else{
                         echo "ERROR: Could not able to execute $sql2. <br>" . mysqli_error($link);
                     }
+                    ?>
+                    <!-- Back Button -->
+                    <div class="form-group">
+                        <a href="index.php" class="btn btn-primary">Back to Home</a>
+                    </div>
+                </div>
+            </div>        
+        </div>
+    </div>
+</body>
+</html>
