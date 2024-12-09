@@ -52,7 +52,7 @@
 				</ol>
 		       <h2 class="pull-left">Renter Details</h2>
             
-               <a href="createRenter.php" class="btn btn-success pull-right">Add New Renter</a>
+               <!-- <a href="createRenter.php" class="btn btn-success pull-right">Add New Renter</a> -->
                     </div>
                     <?php
                     // Include config file
@@ -81,10 +81,10 @@
                                         echo "<td>" . $row['Renter_Phone'] . "</td>";
                                         echo "<td>" . $row['lid'] . "</td>";
                                         echo "<td>";
-                                            echo "<a href='viewOwnersandManagers.php?RenterId=". $row['RenterId']./*"&Lname=".$row['Lname'].*/"' title='View Owners & Managers' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
-                                            echo "<a href='updateEmployee.php?Ssn=". $row['Ssn'] ."' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                            echo "<a href='deleteEmployee.php?Ssn=". $row['Ssn'] ."' title='Delete Record' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
-											echo "<a href='viewDependents.php?Ssn=". $row['Ssn']."&Lname=".$row['Lname']."' title='View Dependents' data-toggle='tooltip'><span class='glyphicon glyphicon-user'></span></a>";
+                                            echo "<a href='PaymentsFromRenter.php?RenterId=". $row['RenterId']."&Renter_FName=".$row['Renter_FName']."' title='View Payments' data-toggle='tooltip'><span class='glyphicon glyphicon-usd'></span></a>";
+                                            // echo "<a href='updateEmployee.php?Ssn=". $row['Ssn'] ."' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+                                            // echo "<a href='deleteEmployee.php?Ssn=". $row['Ssn'] ."' title='Delete Record' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+											// echo "<a href='viewDependents.php?Ssn=". $row['Ssn']."&Lname=".$row['Lname']."' title='View Dependents' data-toggle='tooltip'><span class='glyphicon glyphicon-user'></span></a>";
                                         echo "</td>";
                                     echo "</tr>";
                                 }
