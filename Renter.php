@@ -7,16 +7,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Property DB</title>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     
-	<style type="text/css">
+    <style type="text/css">
         .wrapper{
             width: 70%;
             margin:0 auto;
@@ -29,35 +29,31 @@
         $(document).ready(function(){
             $('[data-toggle="tooltip"]').tooltip();   
         });
-		 $('.selectpicker').selectpicker();
+        $('.selectpicker').selectpicker();
     </script>
 </head>
 <body>
     <?php
         // Include config file
         require_once "config.php";
-//		include "header.php";
-	?>
+    ?>
     <div class="wrapper">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-		    <div class="page-header clearfix">
-		     <h2> Property Manangement Database (CS 340) </h2> 
-                       <p> Project should include CRUD operations. In this website you can:
-				<ol> 	<li> CREATE new properties and leases </li>
-					<li> RETRIEVE all property managers and owners for a property and all renters and payments for a lease</li>
-                                        <li> UPDATE renter records</li>
-					<li> DELETE property manager, owner, and renter records </li>
-				</ol>
-		       <h2 class="pull-left">Renter Details</h2>
-            
-               <!-- <a href="createRenter.php" class="btn btn-success pull-right">Add New Renter</a> -->
+                    <div class="page-header clearfix">
+                        <h2> Property Manangement Database (CS 340) </h2> 
+                        <p> Project should include CRUD operations. In this website you can:
+                            <ol> 
+                                <li> CREATE new properties and leases </li>
+                                <li> RETRIEVE all property managers and owners for a property and all renters and payments for a lease</li>
+                                <li> UPDATE renter records</li>
+                                <li> DELETE property manager, owner, and renter records </li>
+                            </ol>
+                        <h2 class="pull-left">Renter Details</h2>
                     </div>
                     <?php
-                    // Include config file
-                    require_once "config.php";
-                    
+                    // Fetch Renter records from the database
                     $sql = "SELECT * FROM Renter";
                     if($result = mysqli_query($link, $sql)){
                         if(mysqli_num_rows($result) > 0){
@@ -82,9 +78,6 @@
                                         echo "<td>" . $row['lid'] . "</td>";
                                         echo "<td>";
                                             echo "<a href='PaymentsFromRenter.php?RenterId=". $row['RenterId']."&Renter_FName=".$row['Renter_FName']."' title='View Payments' data-toggle='tooltip'><span class='glyphicon glyphicon-usd'></span></a>";
-                                            // echo "<a href='updateEmployee.php?Ssn=". $row['Ssn'] ."' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                            // echo "<a href='deleteEmployee.php?Ssn=". $row['Ssn'] ."' title='Delete Record' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
-											// echo "<a href='viewDependents.php?Ssn=". $row['Ssn']."&Lname=".$row['Lname']."' title='View Dependents' data-toggle='tooltip'><span class='glyphicon glyphicon-user'></span></a>";
                                         echo "</td>";
                                     echo "</tr>";
                                 }
@@ -98,3 +91,14 @@
                     } else{
                         echo "ERROR: Could not able to execute $sql. <br>" . mysqli_error($link);
                     }
+                    ?>
+                    <!-- Back Button -->
+                    <div class="form-group">
+                        <a href="index.php" class="btn btn-primary">Back to Home</a>
+                    </div>
+                </div>
+            </div>        
+        </div>
+    </div>
+</body>
+</html>
