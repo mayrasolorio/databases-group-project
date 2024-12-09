@@ -67,8 +67,10 @@
                                         echo "<th width=10%>Street</th>";
                                         echo "<th width=10%>City</th>";
                                         echo "<th width=5%>State</th>";
-					echo "<th width=10%>Zip</th>";
-					echo "<th width = 5%>Availability Status</th>";
+										echo "<th width=10%>Zip</th>";
+										echo "<th width = 5%>Availability Status</th>";
+                                        // echo "<th width=10%>Owner Id </th>";
+                                        // echo "<th width =8%>Manager Id </th>";
                                         echo "<th width=10%>Action</th>";
                                     echo "</tr>";
                                 echo "</thead>";
@@ -78,9 +80,11 @@
                                         echo "<td>" . $row['HouseId'] . "</td>";
                                         echo "<td>" . $row['Street'] . "</td>";
                                         echo "<td>" . $row['City'] . "</td>";
-					echo "<td>" . $row['State'] . "</td>";									
-					echo "<td>" . $row['Zip'] . "</td>";
-                                        echo "<td>" . $row['Availability_Status'] . "</td>";				
+										echo "<td>" . $row['State'] . "</td>";									
+										echo "<td>" . $row['Zip'] . "</td>";
+                                        echo "<td>" . $row['Availability_Status'] . "</td>";										
+                                        // echo "<td>" . $row['oid'] . "</td>";
+										// echo "<td>" . $row['mid'] . "</td>";
                                         echo "<td>";
                                             echo "<a href='LeaseFromProperty.php?HouseId=". $row['HouseId'].
                                             "&Street=" . urlencode($row['Street']) .
@@ -102,7 +106,8 @@
                     } else{
                         echo "ERROR: Could not able to execute $sql. <br>" . mysqli_error($link);
                     }
-
+	
+    
                     echo "<br> <h2>Lease Details</h2> <br>";
                     $sql2 = "
                     SELECT 
@@ -123,7 +128,6 @@
 
                     if($result2 = mysqli_query($link, $sql2)){
                         if(mysqli_num_rows($result2) > 0){
-                            echo "<div class='col-lg-7'>";
 							echo "<table class='table table-bordered table-striped'>";
                                 echo "<thead>";
                                     echo "<tr>";
@@ -163,3 +167,13 @@
                 </div>
 
 </body>
+                    <!-- Back Button -->
+                    <div class="form-group">
+                        <a href="index.php" class="btn btn-primary">Back to Home</a>
+                    </div>
+                </div>
+            </div>        
+        </div>
+    </div>
+</body>
+</html>
