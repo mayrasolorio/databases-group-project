@@ -51,20 +51,11 @@
 					<li> DELETE property manager, owner, and renter records </li>
 				</ol>
 		       <h2 class="pull-left">Property Details</h2>
-            
-               <a href="createEmployee.php" class="btn btn-success pull-right">Add New Employee</a>
                     </div>
                     <?php
                     // Include config file
                     require_once "config.php";
                     
-                    // Attempt select all employee query execution
-					// *****
-					// Insert your function for Salary Level
-					/*
-						$sql = "SELECT Ssn,Fname,Lname,Salary, Address, Bdate, PayLevel(Ssn) as Level, Super_ssn, Dno
-							FROM EMPLOYEE";
-					*/
                     $sql = "SELECT HouseId,Street,City,Zip, State, Availability_Status, oid, mid
 							FROM Property";
                     if($result = mysqli_query($link, $sql)){
@@ -76,10 +67,8 @@
                                         echo "<th width=10%>Street</th>";
                                         echo "<th width=10%>City</th>";
                                         echo "<th width=5%>State</th>";
-										echo "<th width=10%>Zip</th>";
-										echo "<th width = 5%>Availability Status</th>";
-                                        // echo "<th width=10%>Owner Id </th>";
-                                        // echo "<th width =8%>Manager Id </th>";
+					echo "<th width=10%>Zip</th>";
+					echo "<th width = 5%>Availability Status</th>";
                                         echo "<th width=10%>Action</th>";
                                     echo "</tr>";
                                 echo "</thead>";
@@ -89,11 +78,9 @@
                                         echo "<td>" . $row['HouseId'] . "</td>";
                                         echo "<td>" . $row['Street'] . "</td>";
                                         echo "<td>" . $row['City'] . "</td>";
-										echo "<td>" . $row['State'] . "</td>";									
-										echo "<td>" . $row['Zip'] . "</td>";
-                                        echo "<td>" . $row['Availability_Status'] . "</td>";										
-                                        // echo "<td>" . $row['oid'] . "</td>";
-										// echo "<td>" . $row['mid'] . "</td>";
+					echo "<td>" . $row['State'] . "</td>";									
+					echo "<td>" . $row['Zip'] . "</td>";
+                                        echo "<td>" . $row['Availability_Status'] . "</td>";				
                                         echo "<td>";
                                             echo "<a href='LeaseFromProperty.php?HouseId=". $row['HouseId'].
                                             "&Street=" . urlencode($row['Street']) .
