@@ -110,7 +110,7 @@ if (isset($_SESSION["HouseId"])) {
                 // Free result set
                 mysqli_free_result($result);
             } else {
-                echo "No Leases Yet.";
+                echo "No Leases Yet. Manager must first set the property to available before the tenant can lease the property.";
             }
         } else {
             echo "Error executing query. Please try again.";
