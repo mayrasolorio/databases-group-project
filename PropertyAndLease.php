@@ -30,6 +30,7 @@
         .occupied {
             background-color: #f8d7da; /* Light red */
             color: #721c24;
+        }
         .active-lease {
             background-color: #d4edda; /* Light green */
             color: #155724;
@@ -38,7 +39,7 @@
             background-color: #f8d7da; /* Light red */
             color: #721c24;
         }
-        }
+
     </style>
 </head>
 <body>
@@ -61,6 +62,7 @@
 		            </ol>
 		        </p>
 		        <h2 class="pull-left">Property Details</h2>
+                <a href="AddProperty.php" class="btn btn-success pull-right">Add Property</a>
 		    </div>
 		    <?php
 		        $sql = "
@@ -133,7 +135,7 @@
                     Lease_Start, 
                     Lease_End, 
                     Monthly_Rent,
-                    TIMESTAMPDIFF(MONTH, Lease_Start, Lease_End) + 1 AS LeaseDuration,
+                    TIMESTAMPDIFF(MONTH, Lease_Start, Lease_End) AS LeaseDuration,
                     SUM(Monthly_Rent) - IFNULL(SUM(P.Amount), 0) AS AllRentLeft,
                     IF(Lease_End >= CURDATE(), 'Active', 'Finished') AS LeaseStatus
                 FROM 
