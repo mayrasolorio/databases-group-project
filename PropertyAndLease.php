@@ -107,9 +107,9 @@
 		                    echo "<tbody>";
 		                    while ($row = mysqli_fetch_array($result)) {
 		                        // Determine the Availability Status based on the lease end date -------- Deprecated. Now based on availability_status
-                                
+
                                 // Check the Availability_Status field from the Property table
-                                $availabilityStatus = ($row['Availability_Status'] == 1) ? "Available" : "Occupied";
+                                $availabilityStatus = ($row['Availability_Status'] == 1) ? "Available" : "Unavailable";
                                 $class = ($availabilityStatus === "Available") ? "available" : "occupied";
 
 
