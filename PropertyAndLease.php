@@ -65,18 +65,30 @@
                 <a href="AddProperty.php" class="btn btn-success pull-right">Add Property</a>
 		    </div>
 		    <?php
-		        $sql = "
-		        SELECT 
-		            HouseId, 
-		            Street, 
-		            City, 
-		            Zip, 
-		            State, 
-		            IFNULL(
-		                (SELECT Lease_End FROM Lease WHERE hid = Property.HouseId ORDER BY Lease_End DESC LIMIT 1), 
-		                NOW()
-		            ) AS Lease_End
-		        FROM Property";
+                // Old SQL satement for checking based on lease end date. Replaced with new SQL statement below to set status based on avaulability_status from properties tabble
+		        // $sql = "
+		        // SELECT 
+		        //     HouseId, 
+		        //     Street, 
+		        //     City, 
+		        //     Zip, 
+		        //     State, 
+		        //     IFNULL(
+		        //         (SELECT Lease_End FROM Lease WHERE hid = Property.HouseId ORDER BY Lease_End DESC LIMIT 1), 
+		        //         NOW()
+		        //     ) AS Lease_End
+		        // FROM Property";
+
+                // Get availabilty_status from the Property table (Make sure to change this based on the lease end date in the lease table) 
+                $sql = "
+                SELECT 
+                    HouseId, 
+                    Street, 
+                    City, 
+                    Zip, 
+                    State, 
+                    Availability_Status
+                FROM Property";
 
 		        if ($result = mysqli_query($link, $sql)) {
 		            if (mysqli_num_rows($result) > 0) {
@@ -94,9 +106,12 @@
 		                    echo "</thead>";
 		                    echo "<tbody>";
 		                    while ($row = mysqli_fetch_array($result)) {
-		                        // Determine the Availability Status based on the lease end date
-		                        $availabilityStatus = (strtotime($row['Lease_End']) < time()) ? "Available" : "Occupied";
-		                        $class = ($availabilityStatus === "Available") ? "available" : "occupied";
+		                        // Determine the Availability Status based on the lease end date -------- Deprecated. Now based on availability_status
+                                
+                                // Check the Availability_Status field from the Property table
+                                $availabilityStatus = ($row['Availability_Status'] == 1) ? "Available" : "Occupied";
+                                $class = ($availabilityStatus === "Available") ? "available" : "occupied";
+
 
 		                        echo "<tr class='$class'>";
 		                            echo "<td>" . $row['HouseId'] . "</td>";
