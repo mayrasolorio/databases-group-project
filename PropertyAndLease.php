@@ -142,7 +142,7 @@
 		            echo "ERROR: Could not able to execute $sql. <br>" . mysqli_error($link);
 		        }
 
-                echo "<br> <h2>Lease Details</h2> <br>";                
+                echo "<br> <h2>Current/Past Lease Details</h2> <br>";                
                 $sql2 = "
                 SELECT 
                     LeaseId, 
