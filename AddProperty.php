@@ -1,12 +1,12 @@
 <?php
-// Include config file
+// Include config file for DB connection
 require_once "config.php";
 
 // Define variables and initialize with empty values
 $HouseId = $Availability_Status = $Zip = $State = $Street = $City = $mid = $oid = "";
 $HouseId_err = $Availability_Status_err = $Zip_err = $State_err = $Street_err = $City_err = $mid_err = $oid_err = "";
 
-// Fetch the current highest HouseId from the database
+// Fetch the current highest HouseId from the database (use this for auto incrementing)
 $sql = "SELECT MAX(HouseId) AS max_id FROM Property";
 if ($result = mysqli_query($link, $sql)) {
     if ($row = mysqli_fetch_assoc($result)) {
@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("location: index.php");
                 exit();
             } else {
-                echo "<center><h4>Error while adding the property.</h4></center>";
+                echo "<center><h4>Error while adding the property: " . mysqli_stmt_error($stmt) . "</h4></center>";
             }
         }
 
