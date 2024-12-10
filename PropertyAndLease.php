@@ -30,6 +30,14 @@
         .occupied {
             background-color: #f8d7da; /* Light red */
             color: #721c24;
+        .active-lease {
+            background-color: #d4edda; /* Light green */
+            color: #155724;
+        }
+        .finished-lease {
+            background-color: #f8d7da; /* Light red */
+            color: #721c24;
+        }
         }
     </style>
 </head>
@@ -138,7 +146,7 @@
                 
                 if ($result2 = mysqli_query($link, $sql2)) {
                     if (mysqli_num_rows($result2) > 0) {
-                        echo "<table class='table table-bordered table-striped'>";
+                        echo "<table class='table table-bordered'>";
                             echo "<thead>";
                                 echo "<tr>";
                                     echo "<th width=10%>Lease Id</th>";
