@@ -1,3 +1,18 @@
+<!-- 
+    Project: Property Management Database (CS 340)
+    Group: Group 8
+    Team Members:
+        - Josiah Liebert
+        - David Gesl
+        - Mayra Solorio
+        - Gabe McVean
+    Description:
+        This project implements a property management system featuring CRUD operations 
+        to manage properties, leases, renters, payments, and more. Users can create, 
+        retrieve, update, and delete records through an intuitive interface. 
+    Date: 12/10/2024
+-->
+
 <?php
 	session_start();
     // Include config file
