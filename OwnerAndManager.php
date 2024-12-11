@@ -44,13 +44,17 @@
                 <div class="col-md-12">
 		    <div class="page-header clearfix">
 		     <h2> Property Manangement Database (CS 340) </h2> 
-                       <p> Project should include CRUD operations. In this website you can:
-				<ol> 	<li> CREATE new properties and leases </li>
-					<li> RETRIEVE all property managers and owners for a property and all renters and payments for a lease</li>
-                                        <li> UPDATE renter records</li>
-					<li> DELETE property manager, owner, and renter records </li>
-				</ol>
-		       <h2 class="pull-left">Owner Details</h2>
+                <p> Project should include CRUD operations. In this website you can:
+                    <ol> 	
+                        <li> CREATE new properties and leases </li>
+                        <li> RETRIEVE all property managers and owners for a property and all renters and payments for a lease</li>
+                        <li> UPDATE renter records</li>
+                        <li> DELETE property manager, owner, and renter records </li>
+                    </ol>
+                </p>
+		       
+                <h2 class="pull-left">Owner Details</h2>        
+                <a href="AddOwner.php" class="btn btn-success pull-right">Add Owner</a>         <!--AddOwner butto for inserting owner  -->
                     </div>
                     <?php
                     // Include config file
@@ -102,7 +106,7 @@
 					
                     // Select Department Stats
 					// You will need to Create a DEPT_STATS table
-					
+					echo "<a href='AddManager.php' class='btn btn-success pull-right' style='margin-left: 10px;'>Add Property Manager</a><br><br>";
                     $sql2 = "SELECT * FROM Prop_Manager";
                     if($result2 = mysqli_query($link, $sql2)){
                         if(mysqli_num_rows($result2) > 0){
