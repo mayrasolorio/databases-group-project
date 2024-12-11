@@ -28,9 +28,9 @@
 
 	/* Change for your username and password for phpMyAdmin*/
 	define('DB_SERVER', 'classmysql.engr.oregonstate.edu');
-	define('DB_USERNAME', 'cs340_XXXX');
-	define('DB_PASSWORD', 'XXXX');
-	define('DB_NAME', 'cs340_XXXX');
+	define('DB_USERNAME', 'cs340_liebertj');
+	define('DB_PASSWORD', '6828');
+	define('DB_NAME', 'cs340_liebertj');
 	 
 	/* Attempt to connect to MySQL database */
 	$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
