@@ -36,7 +36,7 @@
                 <div class="col-md-12">
                     <div class="page-header clearfix">
                         <h2 class="pull-left">View Payments</h2>
-						<a href="AddPayment.php" class="btn btn-success pull-right">Add Payment</a>
+						<!-- <a href="AddPayment.php" class="btn btn-success pull-right">Add Payment</a> -->
                     </div>
 <?php
 
