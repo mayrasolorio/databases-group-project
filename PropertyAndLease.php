@@ -46,6 +46,11 @@
     <?php
         // Include config file
         require_once "config.php";
+        require_once 'updateAvailabilityStatus.php';
+
+        $current_time = time();
+        updateAvailabilityStatus($current_time);
+
     ?>
     <div class="wrapper">
         <div class="container-fluid">
@@ -93,6 +98,7 @@
 		                    echo "<tbody>";
 		                    while ($row = mysqli_fetch_array($result)) {
 		                        // Determine the Availability Status based on the lease end date -------- Deprecated. Now based on availability_status
+                                // $availabilityStatus = (strtotime($row['Lease_End']) < time()) ? "Available" : "Occupied";
 
                                 // Check the Availability_Status field from the Property table
                                 $availabilityStatus = ($row['Availability_Status'] == 1) ? "Available" : "Unavailable";
