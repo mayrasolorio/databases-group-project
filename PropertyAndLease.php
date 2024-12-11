@@ -52,15 +52,21 @@
             <div class="row">
                 <div class="col-md-12">
 		    <div class="page-header clearfix">
-		        <h2>Property Management Database (CS 340)</h2> 
-		        <p>Project should include CRUD operations. In this website you can:
-		            <ol> 
-		                <li>CREATE new properties and leases</li>
-		                <li>RETRIEVE all property managers and owners for a property and all renters and payments for a lease</li>
-		                <li>UPDATE renter records</li>
-		                <li>DELETE property manager, owner, and renter records</li>
-		            </ol>
-		        </p>
+            <h2>Property Management Database (CS 340)</h2> 
+<p>This project demonstrates a comprehensive property management system that includes full CRUD operations. With this website, you can:
+    <ol> 
+        <li><strong>CREATE</strong> new properties, leases, and owners with seamless form-based input.</li>
+        <li><strong>RETRIEVE</strong> detailed information on:
+            <ul>
+                <li>Property managers and owners associated with specific properties.</li>
+                <li>Renters and payment history linked to individual leases.</li>
+            </ul>
+        </li>
+        <li><strong>UPDATE</strong> renter records, including their name and phone number.</li>
+        <li><strong>DELETE</strong> property and renter records as needed.</li>
+    </ol>
+    Navigate through intuitive interfaces to manage all aspects of properties, leases, renters, payments, and more efficiently.
+</p>
 		        <h2 class="pull-left">Property Details</h2>
                 <a href="AddProperty.php" class="btn btn-success pull-right">Add Property</a>
 		    </div>
