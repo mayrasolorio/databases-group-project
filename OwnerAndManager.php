@@ -102,49 +102,66 @@
                     } else{
                         echo "ERROR: Could not able to execute $sql. <br>" . mysqli_error($link);
                     }
-					echo "<br> <h2>Property Manager Details</h2> <br>";
-					
-                    // Select Department Stats
-					// You will need to Create a DEPT_STATS table
-					echo "<a href='AddManager.php' class='btn btn-success pull-right' style='margin-left: 10px;'>Add Property Manager</a><br><br>";
-                    $sql2 = "SELECT * FROM Prop_Manager";
-                    if($result2 = mysqli_query($link, $sql2)){
-                        if(mysqli_num_rows($result2) > 0){
-                            // echo "<div class='col-lg-8'>";
-							echo "<table class='table table-bordered table-striped'>";
-                                echo "<thead>";
-                                    echo "<tr>";
-                                        echo "<th width=10%>Manager Id</th>";
-                                        echo "<th width=10%>First Name</th>";                                        
-                                        echo "<th width = 20%>Employer</th>";
-                                        echo "<th width = 20%>Phone Number</th>";
-                                        echo "<th width=5%>Actions</th>";
-                                echo "</thead>";
-                                echo "<tbody>";
-                                while($row = mysqli_fetch_array($result2)){
-                                    echo "<tr>";
-                                        echo "<td>" . $row['ManagerId'] . "</td>";
-                                        echo "<td>" . $row['Manager_Fname'] . "</td>";
-                                        echo "<td>" . $row['Company_Name'] . "</td>";
-                                        echo "<td>" . $row['Manager_Phone'] . "</td>";
-                                        echo "<td>";
-                                        echo "<a href='PropertyFromManagers.php?ManagerId=" . $row['ManagerId'] . 
-                                        "&Manager_Fname=" . urlencode($row['Manager_Fname']) .  
-                                        "' title='View Properties' data-toggle='tooltip'>
-                                        <span class='glyphicon glyphicon-home'></span>
-                                        </a>";
-                                        echo "</td>";								
-                                    echo "</tr>";
-                                }
-                                echo "</tbody>";                            
+		echo "<br> <h2>Property Manager Details</h2> <br>";
+                    
+                    $sql2 = "
+                    SELECT 
+                        pm.ManagerId, 
+                        pm.Manager_Fname, 
+                        pm.Company_Name, 
+                        pm.Manager_Phone, 
+                        COUNT(p.HouseId) AS Total_Properties 
+                    FROM 
+                        Prop_Manager pm 
+                    LEFT JOIN 
+                        Property p 
+                    ON 
+                        pm.ManagerId = p.mid 
+                    GROUP BY 
+                        pm.ManagerId, pm.Manager_Fname, pm.Company_Name, pm.Manager_Phone";
+                    
+                    if ($result2 = mysqli_query($link, $sql2)) {
+                        if (mysqli_num_rows($result2) > 0) {
+                            echo "<table class='table table-bordered table-striped'>";
+                            echo "<thead>";
+                            echo "<tr>";
+                            echo "<th width=10%>Manager Id</th>";
+                            echo "<th width=10%>First Name</th>";
+                            echo "<th width=20%>Employer</th>";
+                            echo "<th width=20%>Phone Number</th>";
+                            echo "<th width=15%>Total Properties Managed</th>";
+                            echo "<th width=5%>Actions</th>";
+                            echo "</tr>";
+                            echo "</thead>";
+                            echo "<tbody>";
+                    
+                            while ($row = mysqli_fetch_array($result2)) {
+                                echo "<tr>";
+                                echo "<td>" . $row['ManagerId'] . "</td>";
+                                echo "<td>" . $row['Manager_Fname'] . "</td>";
+                                echo "<td>" . $row['Company_Name'] . "</td>";
+                                echo "<td>" . $row['Manager_Phone'] . "</td>";
+                                echo "<td>" . $row['Total_Properties'] . "</td>";
+                                echo "<td>";
+                                echo "<a href='PropertyFromManagers.php?ManagerId=" . $row['ManagerId'] . 
+                                    "&Manager_Fname=" . urlencode($row['Manager_Fname']) .  
+                                    "' title='View Properties' data-toggle='tooltip'>
+                                    <span class='glyphicon glyphicon-home'></span>
+                                    </a>";
+                                echo "</td>";								
+                                echo "</tr>";
+                            }
+                    
+                            echo "</tbody>";
                             echo "</table>";
+                    
                             // Free result set
                             mysqli_free_result($result2);
-                        } else{
+                        } else {
                             echo "<p class='lead'><em>No records were found for Dept Stats.</em></p>";
                         }
-                    } else{
-                        echo "ERROR: Could not able to execute $sql2. <br>" . mysqli_error($link);
+                    } else {
+                        echo "ERROR: Could not execute $sql2. <br>" . mysqli_error($link);
                     }
                     ?>
                     <!-- Back Button -->
