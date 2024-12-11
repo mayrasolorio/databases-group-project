@@ -128,6 +128,9 @@
 		                                "&Zip=" . urlencode($row['Zip']) .
 		                                "' title='View Leases' data-toggle='tooltip'>
 		                                <span class='glyphicon glyphicon-eye-open'></span></a>";
+                                        echo "<a href='DeleteProperty.php?HouseId=" . $row['HouseId'] . 
+                                        "' title='Delete Property' data-toggle='tooltip'>
+                                        <span class='glyphicon glyphicon-trash'></span></a>";
 		                            echo "</td>";
 		                        echo "</tr>";
 		                    }
