@@ -1,5 +1,5 @@
 <?php
-	session_start();
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,21 +65,7 @@
                 <a href="AddProperty.php" class="btn btn-success pull-right">Add Property</a>
 		    </div>
 		    <?php
-                // Old SQL satement for checking based on lease end date. Replaced with new SQL statement below to set status based on avaulability_status from properties tabble
-		        // $sql = "
-		        // SELECT 
-		        //     HouseId, 
-		        //     Street, 
-		        //     City, 
-		        //     Zip, 
-		        //     State, 
-		        //     IFNULL(
-		        //         (SELECT Lease_End FROM Lease WHERE hid = Property.HouseId ORDER BY Lease_End DESC LIMIT 1), 
-		        //         NOW()
-		        //     ) AS Lease_End
-		        // FROM Property";
-
-                // Get availabilty_status from the Property table (Make sure to change this based on the lease end date in the lease table) 
+                // Get availability_status from the Property table
                 $sql = "
                 SELECT 
                     HouseId, 
@@ -111,7 +97,6 @@
                                 // Check the Availability_Status field from the Property table
                                 $availabilityStatus = ($row['Availability_Status'] == 1) ? "Available" : "Unavailable";
                                 $class = ($availabilityStatus === "Available") ? "available" : "occupied";
-
 
 		                        echo "<tr class='$class'>";
 		                            echo "<td>" . $row['HouseId'] . "</td>";
@@ -145,7 +130,12 @@
 		            echo "ERROR: Could not able to execute $sql. <br>" . mysqli_error($link);
 		        }
 
-                echo "<br> <h2>Current/Past Lease Details</h2> <br>";                
+                // Add New Lease button correctly placed here
+                echo "<br> <h2>Current/Past Lease Details</h2> <br>";
+                ?>
+                <a href="addNewLease.php" class="btn btn-success pull-right">Add New Lease</a>
+                <?php
+
                 $sql2 = "
                 SELECT 
                     LeaseId, 
@@ -218,4 +208,3 @@
     </div>
 </body>
 </html>
-
