@@ -52,7 +52,7 @@
                             </ol>
                         <h2 class="pull-left">Renter Details</h2>
                     </div>
-                    <?php
+                                       <?php
                     // Fetch Renter records from the database
                     $sql = "SELECT * FROM Renter";
                     if($result = mysqli_query($link, $sql)){
@@ -78,14 +78,18 @@
                                         echo "<td>" . $row['lid'] . "</td>";
                                         echo "<td>";
                                             echo "<a href='PaymentsFromRenter.php?RenterId=". $row['RenterId']."&Renter_FName=".$row['Renter_FName']."' title='View Payments' data-toggle='tooltip'><span class='glyphicon glyphicon-usd'></span></a>";
+                                            echo "<a href='UpdateRenter.php?RenterId=" . $row['RenterId'] . 
+                                            "&RenterFName=" . $row['Renter_FName'] . 
+                                            "&RenterLName=" . $row['Renter_LName'] . 
+                                            "' title='Update Renter Info' data-toggle='tooltip'>
+                                            <span class='glyphicon glyphicon-pencil'></span></a>";                                       
                                         echo "</td>";
                                     echo "</tr>";
                                 }
                                 echo "</tbody>";                            
                             echo "</table>";
                             // Free result set
-                            mysqli_free_result($result);
-                        } else{
+                            mysqli_free_result($result);                        } else{
                             echo "<p class='lead'><em>No records were found.</em></p>";
                         }
                     } else{
