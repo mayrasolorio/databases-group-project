@@ -36,7 +36,6 @@
                 <div class="col-md-12">
                     <div class="page-header clearfix">
                         <h2 class="pull-left">View Leases</h2>
-						<a href="createDependents.php" class="btn btn-success pull-right">Add Dependent</a>
                     </div>
 <?php
 

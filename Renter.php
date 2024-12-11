@@ -29,7 +29,6 @@
         $(document).ready(function(){
             $('[data-toggle="tooltip"]').tooltip();   
         });
-        $('.selectpicker').selectpicker();
     </script>
 </head>
 <body>
@@ -78,14 +77,20 @@
                                         echo "<td>" . $row['lid'] . "</td>";
                                         echo "<td>";
                                             echo "<a href='PaymentsFromRenter.php?RenterId=". $row['RenterId']."&Renter_FName=".$row['Renter_FName']."' title='View Payments' data-toggle='tooltip'><span class='glyphicon glyphicon-usd'></span></a>";
+                                            echo "<a href='UpdateRenter.php?RenterId=" . $row['RenterId'] . 
+                                            "&RenterFName=" . $row['Renter_FName'] . 
+                                            "&RenterLName=" . $row['Renter_LName'] . 
+                                            "' title='Update Renter Info' data-toggle='tooltip'>
+                                            <span class='glyphicon glyphicon-pencil'></span></a>";    
+                                            // Add delete functionality
+                                            echo "<a href='DeleteRenter.php?RenterId=" . $row['RenterId'] . "&LeaseId=" . $row['lid'] . "' title='Delete Renter' data-toggle='tooltip' onclick='return confirm(\"Are you sure you want to delete this renter?\");'><span class='glyphicon glyphicon-trash'></span></a>";
                                         echo "</td>";
                                     echo "</tr>";
                                 }
                                 echo "</tbody>";                            
                             echo "</table>";
                             // Free result set
-                            mysqli_free_result($result);
-                        } else{
+                            mysqli_free_result($result);                        } else{
                             echo "<p class='lead'><em>No records were found.</em></p>";
                         }
                     } else{
