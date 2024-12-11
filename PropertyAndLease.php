@@ -49,7 +49,13 @@
         require_once 'updateAvailabilityStatus.php';
 
         $current_time = time();
-        updateAvailabilityStatus($current_time);
+
+        // Pass the new date format as a string and the original date in Unix time
+        // $newDate = date("d-m-Y", $current_time);
+        $newDate = date("Y-m-d", $current_time);
+        
+        
+        updateAvailabilityStatus($newDate);
 
     ?>
     <div class="wrapper">

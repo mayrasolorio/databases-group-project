@@ -1,35 +1,31 @@
 <?php
 function updateAvailabilityStatus($currentDate) {
-    // Include the database connection
-    require_once "config.php";
-    
-    // Sanitize and format the current date (aalready in YYYY-MM-DD format)
-    $currentDate = mysqli_real_escape_string($link, $currentDate);
-    
-    // query to check for expired leases
+    // Use the global database connection
+    global $link;
+
+    // Query to check for expired leases
     $sql = "
         SELECT L.hid 
         FROM Lease L
         WHERE L.Lease_End < '$currentDate' AND L.Lease_End IS NOT NULL
     ";
     
-    // Execute query
+    // Execute the query
     if ($result = mysqli_query($link, $sql)) {
         if (mysqli_num_rows($result) > 0) {
-            // Loop through any expured listings
+            // Loop through any expired leases
             while ($row = mysqli_fetch_assoc($result)) {
-                
                 // Get the HouseId (hid) from the expired lease
                 $houseId = $row['hid'];
                 
-                // set the corresponding property availability status to 1 (Available)
+                // Set the corresponding property availability status to 1 (Available)
                 $updateSql = "
                     UPDATE Property 
                     SET Availability_Status = 1 
                     WHERE HouseId = '$houseId'
                 ";
 
-                // run udpate query
+                // Run the update query
                 if (mysqli_query($link, $updateSql)) {
                     echo "Property with HouseId $houseId availability status updated to available.<br>";
                 } else {
@@ -45,7 +41,5 @@ function updateAvailabilityStatus($currentDate) {
     } else {
         echo "ERROR: Could not execute $sql. <br>" . mysqli_error($link);
     }
-
-    mysqli_close($link); // Close DB connection 
 }
 ?>
